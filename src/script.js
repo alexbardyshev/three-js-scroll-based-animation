@@ -121,6 +121,10 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  */
 let scrollY = window.scrollY
 
+window.addEventListener('scroll', () => {
+    scrollY = window.scrollY
+})
+
 /**
  * Animate
  */
@@ -129,6 +133,9 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // Animate camera
+    camera.position.y = - scrollY / sizes.height * objectsDistance
 
     // Animate meshes
     for(const mesh of sectionMeshes) {
